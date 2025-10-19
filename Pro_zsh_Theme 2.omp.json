@@ -1,0 +1,227 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "name": "FlatRemixProUltimateProEdition_ElegantVelvet_Transient",
+  "blocks": [
+    {
+      "alignment": "right",
+      "segments": [
+        // 1. Time
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "#93B7D2",
+          "template": "  {{ .CurrentDate | date \"03:04 PM\" }} "
+        },
+        // 2. Tooltip
+        {
+          "type": "tooltip",
+          "style": "plain",
+          "foreground": "#D9BF80",
+          "properties": {
+            "commands": [
+              "git",
+              "kubectl",
+              "terraform"
+            ]
+          },
+          "template": " | 💡 ({{ .Output }}) "
+        },
+        // 3. Git
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#D9BF80",
+          "properties": {
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "branch_icon": " \ue0a0 "
+          },
+          "template": " |  {{ .HEAD }}{{ if .Working.Changed }} ✏️ {{ end }}{{ if gt .StashCount 0 }} 💾 {{ .StashCount }}{{ end }} "
+        },
+        // 4. PHP
+        {
+          "type": "php",
+          "style": "plain",
+          "foreground": "#B382B8",
+          "properties": {
+            "fetch_version": true
+          },
+          "template": " |  {{ .Full }} "
+        },
+        // 5. Node
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "#8F9E66",
+          "properties": {
+            "display_mode": "files",
+            "fetch_package_manager": true,
+            "fetch_version": true
+          },
+          "template": " | \ue718 {{ .Full }} "
+        },
+        // 6. NPM
+        {
+          "type": "npm",
+          "style": "plain",
+          "foreground": "#D27B7B",
+          "properties": {
+            "fetch_version": true
+          },
+          "template": " |  {{ .Full }} "
+        },
+        // 7. Go
+        {
+          "type": "go",
+          "style": "plain",
+          "foreground": "#93B7D2",
+          "properties": {
+            "display_mode": "version"
+          },
+          "template": " |  {{ .Full }} "
+        },
+        // 8. Python
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "#D9BF80",
+          "properties": {
+            "display_mode": "version"
+          },
+          "template": " |  {{ .Full }} "
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        // 1. OS
+        {
+          "background": "#1B2B34",
+          "foreground": "#D8D8D8",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "{{ .Icon }} {{ .HostName }} ",
+          "type": "os",
+          "properties": {
+            "windows": "",
+            "linux": ""
+          }
+        },
+        // 2. Session
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background_templates": [
+            "{{ if .Root }}#D27B7B{{ else }}#6B5B95{{ end }}"
+          ],
+          "foreground": "#D8D8D8",
+          "template": " 👤 {{ .UserName }} "
+        },
+        // 3. Shell
+        {
+          "type": "shell",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#497F87",
+          "foreground": "#D8D8D8",
+          "template": " 🖥️ {{ .Name }} "
+        },
+        // 4. Path
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#547A56",
+          "foreground": "#D8D8D8",
+          "template": "  {{ .Path }} ",
+          "properties": {
+            "style": "agnoster_full",
+            "max_depth": 3,
+            "folder_separator_icon": "  ",
+            "home_icon": "~",
+            "aliases": {
+              "~/": "",
+              "~/Documents": "",
+              "~/Downloads": "",
+              "~/Music": "",
+              "~/Pictures": "",
+              "~/Desktop": "",
+              "~/Videos": "",
+              "~/Projects": "",
+              "~/Screenshots": "",
+              "~/Public": ""
+            }
+          }
+        },
+        // 5. Kubernetes
+        {
+          "type": "kubernetes",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#B382B8",
+          "foreground": "#D8D8D8",
+          "template": " ☸️ {{ .Context }} {{ .Namespace }} "
+        },
+        // 6. AWS
+        {
+          "type": "aws",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#D9BF80",
+          "foreground": "#1B2B34",
+          "template": "  {{ .Profile }}@{{ .Region }} "
+        },
+        // 7. Docker
+        {
+          "type": "docker",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#93B7D2",
+          "foreground": "#1B2B34",
+          "properties": {
+            "display_mode": "context"
+          },
+          "template": " 🐳 {{ .Context }} "
+        },
+        // 8. Execution Time
+        {
+          "type": "executiontime",
+          "background": "#5E81AC",
+          "foreground": "#D8D8D8",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "threshold": 500
+          },
+          "style": "powerline",
+          "template": " \ueba2 {{ .FormattedMs }} ",
+          "type": "executiontime"
+        },
+        // 9. Status
+        {
+          "background_templates": [
+            "{{ if gt .Code 0 }}#D27B7B{{ else }}#8F9E66{{ end }}"
+          ],
+          "foreground": "#1B2B34",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "powerline",
+          "template": " {{ if gt .Code 0 }}  {{ .Code }}{{ else }}  {{ end }}<#D8D8D8> \u279c </>",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 3,
+  // 💥 تمت إضافة الموجه العابر مرة أخرى 💥
+  "transient_prompt": {
+    "foreground": "#00c983",
+    "template": " "
+  }
+}
